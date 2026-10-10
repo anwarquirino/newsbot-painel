@@ -21,9 +21,7 @@ CREATE TABLE IF NOT EXISTS noticias_publicadas (
   data_coleta DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   data_publicacao DATETIME NULL,
   tentativas TINYINT NOT NULL DEFAULT 0,
-  erro_msg TEXT NULL,
-  INDEX idx_status_data_coleta (status, data_coleta),
-  INDEX idx_data_publicacao (data_publicacao)
+  erro_msg TEXT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS execucoes_log (
@@ -31,6 +29,5 @@ CREATE TABLE IF NOT EXISTS execucoes_log (
   fluxo VARCHAR(100) NOT NULL,
   status ENUM('ok', 'erro') NOT NULL,
   mensagem TEXT NULL,
-  criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  INDEX idx_criado_em (criado_em)
+  criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;

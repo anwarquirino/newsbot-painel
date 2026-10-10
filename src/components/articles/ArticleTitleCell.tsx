@@ -3,10 +3,9 @@ import type { ArticleSummary } from '@/lib/types';
 
 interface ArticleTitleCellProps {
   article: Pick<ArticleSummary, 'id' | 'title' | 'source' | 'category'>;
-  showMeta?: boolean;
 }
 
-export function ArticleTitleCell({ article, showMeta = true }: ArticleTitleCellProps) {
+export function ArticleTitleCell({ article }: ArticleTitleCellProps) {
   return (
     <div className="min-w-[16rem]">
       <Link
@@ -15,11 +14,9 @@ export function ArticleTitleCell({ article, showMeta = true }: ArticleTitleCellP
       >
         {article.title}
       </Link>
-      {showMeta ? (
-        <p className="mt-0.5 text-xs text-muted">
-          {[article.source, article.category].filter(Boolean).join(' · ') || 'Sem fonte'}
-        </p>
-      ) : null}
+      <p className="mt-0.5 text-xs text-muted">
+        {[article.source, article.category].filter(Boolean).join(' · ') || 'Sem fonte'}
+      </p>
     </div>
   );
 }

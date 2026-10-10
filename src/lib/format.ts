@@ -6,22 +6,12 @@ const dateTimeFormatter = new Intl.DateTimeFormat('pt-BR', {
   minute: '2-digit',
 });
 
-const dateFormatter = new Intl.DateTimeFormat('pt-BR', {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-});
-
 const numberFormatter = new Intl.NumberFormat('pt-BR');
 
 export const EMPTY_VALUE = '—';
 
 export function formatDateTime(date: Date | null | undefined): string {
   return date ? dateTimeFormatter.format(date) : EMPTY_VALUE;
-}
-
-export function formatDate(date: Date | null | undefined): string {
-  return date ? dateFormatter.format(date) : EMPTY_VALUE;
 }
 
 export function formatNumber(value: number): string {
