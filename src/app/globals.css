@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+
+:root {
+  color-scheme: light;
+  --surface-page: #f9f9f7;
+  --surface-1: #fcfcfb;
+  --surface-2: #f1f1ee;
+  --ink-primary: #0b0b0b;
+  --ink-secondary: #52514e;
+  --ink-muted: #898781;
+  --line: rgba(11, 11, 11, 0.1);
+  --line-strong: #c3c2b7;
+  --grid: #e1e0d9;
+  --accent: #2a78d6;
+  --accent-hover: #1c5cab;
+  --accent-text: #1c5cab;
+  --accent-soft: #cde2fb;
+  --series-1: #2a78d6;
+  --series-1-hover: #1c5cab;
+  --status-good: #0ca30c;
+  --status-good-text: #006300;
+  --status-warning: #fab219;
+  --status-warning-text: #7a5200;
+  --status-critical: #d03b3b;
+  --status-critical-text: #a32b2b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface-page: #0d0d0d;
+    --surface-1: #1a1a19;
+    --surface-2: #232322;
+    --ink-primary: #f0efec;
+    --ink-secondary: #c3c2b7;
+    --ink-muted: #898781;
+    --line: rgba(255, 255, 255, 0.1);
+    --line-strong: #383835;
+    --grid: #2c2c2a;
+    --accent: #3987e5;
+    --accent-hover: #5598e7;
+    --accent-text: #6da7ec;
+    --accent-soft: #184f95;
+    --series-1: #3987e5;
+    --series-1-hover: #6da7ec;
+    --status-good-text: #0ca30c;
+    --status-warning-text: #fab219;
+    --status-critical-text: #e66767;
+  }
+}
+
+@theme inline {
+  --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --color-page: var(--surface-page);
+  --color-surface: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink-primary);
+  --color-ink-2: var(--ink-secondary);
+  --color-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-grid: var(--grid);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-accent-soft: var(--accent-soft);
+  --color-series-1: var(--series-1);
+  --color-series-1-hover: var(--series-1-hover);
+  --color-good: var(--status-good);
+  --color-good-text: var(--status-good-text);
+  --color-warning: var(--status-warning);
+  --color-warning-text: var(--status-warning-text);
+  --color-critical: var(--status-critical);
+  --color-critical-text: var(--status-critical-text);
+}
+
+@layer base {
+  body {
+    @apply bg-page text-ink antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-lg border border-line bg-surface p-5;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn border-transparent bg-accent text-white hover:bg-accent-hover;
+  }
+
+  .btn-secondary {
+    @apply btn border-line-strong bg-surface text-ink hover:bg-surface-2;
+  }
+
+  .btn-danger {
+    @apply btn border-line-strong bg-surface text-critical-text hover:bg-surface-2;
+  }
+
+  .input {
+    @apply w-full rounded-md border border-line-strong bg-surface px-3 py-1.5 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none;
+  }
+
+  .label {
+    @apply mb-1 block text-xs font-medium text-ink-2;
+  }
+
+  .table {
+    @apply w-full border-collapse text-sm;
+  }
+
+  .table th {
+    @apply border-b border-line px-3 py-2 text-left text-xs font-medium tracking-wide text-muted uppercase;
+  }
+
+  .table td {
+    @apply border-b border-line px-3 py-2 align-top;
+  }
+
+  .table tbody tr:hover {
+    @apply bg-surface-2;
+  }
+
+  .article-content {
+    @apply text-[15px] leading-7 text-ink;
+  }
+
+  .article-content h2 {
+    @apply mt-6 mb-2 text-lg font-semibold;
+  }
+
+  .article-content h3 {
+    @apply mt-5 mb-2 text-base font-semibold;
+  }
+
+  .article-content p {
+    @apply my-3;
+  }
+
+  .article-content ul,
+  .article-content ol {
+    @apply my-3 pl-6;
+  }
+
+  .article-content ul {
+    @apply list-disc;
+  }
+
+  .article-content ol {
+    @apply list-decimal;
+  }
+
+  .article-content a {
+    @apply text-accent-text underline underline-offset-2;
+  }
+
+  .article-content blockquote {
+    @apply my-3 border-l-2 border-line-strong pl-4 text-ink-2;
+  }
+}
