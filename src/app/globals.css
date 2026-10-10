@@ -95,15 +95,15 @@
   }
 
   .btn-primary {
-    @apply btn border-transparent bg-accent text-white hover:bg-accent-hover;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-60 border-transparent bg-accent text-white hover:bg-accent-hover;
   }
 
   .btn-secondary {
-    @apply btn border-line-strong bg-surface text-ink hover:bg-surface-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-60 border-line-strong bg-surface text-ink hover:bg-surface-2;
   }
 
   .btn-danger {
-    @apply btn border-line-strong bg-surface text-critical-text hover:bg-surface-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-60 border-line-strong bg-surface text-critical-text hover:bg-surface-2;
   }
 
   .input {
