@@ -1,0 +1,41 @@
+services:
+  painel:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      DATA_SOURCE: mysql
+      DATABASE_URL: mysql://newsbot:newsbot@mysql:3306/newsbot
+      PAINEL_SENHA: ${PAINEL_SENHA:-newsbot}
+      SESSION_SECRET: ${SESSION_SECRET:-troque-este-segredo-em-producao}
+      WORDPRESS_URL: ${WORDPRESS_URL:-https://exemplo.com.br}
+      TZ: America/Sao_Paulo
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: newsbot
+      MYSQL_USER: newsbot
+      MYSQL_PASSWORD: newsbot
+      TZ: America/Sao_Paulo
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql
+      # Executados em ordem alfabética na primeira inicialização do volume.
+      - ./newsbot_schema.sql:/docker-entrypoint-initdb.d/001_schema.sql:ro
+      - ./sql/001_painel.sql:/docker-entrypoint-initdb.d/002_painel.sql:ro
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', '127.0.0.1', '-u', 'newsbot', '-pnewsbot']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  mysql-data:
