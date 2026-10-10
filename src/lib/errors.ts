@@ -4,6 +4,7 @@ export type AppErrorCode =
   | 'NOT_FOUND'
   | 'INVALID_STATUS'
   | 'UNAUTHORIZED'
+  | 'AUTH_DISABLED'
   | 'MIGRATION_REQUIRED'
   | 'INTERNAL_ERROR';
 
